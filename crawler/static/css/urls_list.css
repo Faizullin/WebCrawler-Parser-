@@ -1,0 +1,13 @@
+.m-bg-gray{
+	background-color: #808080 !important;
+	border: none;
+}
+.current-tasks-block{
+	margin: 50px 0 40px 0;
+}
+a ,a:*{
+    text-decoration: underline;
+}
+.list-item-status-val{
+	margin-left: 10px;
+}

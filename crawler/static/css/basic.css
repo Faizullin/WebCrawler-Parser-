@@ -1,0 +1,135 @@
+
+.request-error-block{
+	display: none;
+	position: fixed;
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1100;
+}
+.request-error-block-inner{
+	min-width: 600px;
+}
+.request-success-block{
+	display: none;
+	position: fixed;
+	top: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1100;
+}
+.request-success-block-inner{
+	min-width: 600px;
+}
+
+.header-inner{
+	position: relative;
+	width: 90%;
+	margin: 0 auto;
+}
+.header-top{
+	display: flex;
+	justify-content: flex-end;
+	height: 50px;
+}
+.header-top div{
+	height: auto;
+}
+#topDisplay{
+margin-top: 60px;
+margin-bottom: 80px;
+text-align: center;
+}
+.my-rounded{
+border-radius: 10px;
+}
+.simpleText{
+  font-size: 1.2rem;
+}
+/*________________________________________________________________________________*/
+.auth-block {
+	width: 120px;
+	position: relative;
+
+}
+.auth-inner-block{
+	background: #808080;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.auth-inner-block p{
+	font-size: 1.25rem;
+	font-weight: 400;
+}
+.dropdown-content{
+	position: absolute;
+	right: 0;
+	display: none;
+	z-index: 999;
+}
+.auth-profile-block{
+	background: #808080 !important;
+	width: 100%;
+	text-align: center;
+	top: 100%;
+	height: 50px;
+	display: none;
+}
+.auth-profile-block a{
+	font-size: 1.25rem;
+	font-weight: 400;
+	text-decoration: none;
+}
+.auth-login-block{
+	background:#f8f9fa;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px ;
+	position: absolute;
+	top: 100%;
+	display: none;
+}
+.auth-login-inner-block{
+	width: 200px;
+	display: flex;
+	justify-content: center;
+}
+
+
+.auth-register-block{
+	background:#f8f9fa;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 5px ;
+	position: absolute;
+	top: 100%;
+	display: none;
+}
+.auth-register-inner-block{
+	/*background:#f8f9fa;*/
+	display: flex;
+	justify-content: center;
+	width: 200px;
+}
+.form-error{
+	color: red !important;
+}
+
+.inputText{
+	font-size: 1rem;
+}
+
+@media(max-width:500px) {
+	#topDisplay{
+		margin-top: 30px;
+		margin-bottom: 40px;
+	}
+	.myButton{
+		width:100px !important;
+		height: 35px !important;
+	}
+	.inputText{
+		font-size: 0.8rem;
+	}
+}

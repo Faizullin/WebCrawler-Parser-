@@ -1,0 +1,121 @@
+{% extends 'crawler/base.html' %}
+{% load static %}
+{% block content %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 form-outer-block">
+       <form id='searchForm' class="simple-send" action="/search/" method="post">
+          {% csrf_token %}
+          <div class="form-error">
+            {{ form_search.non_field_errors }}
+          </div>
+          <p class='simpleText radioName'>Website url:</p>
+          <div id='url-block' class="my-rounded" >
+            {{ form_search.url }}
+          </div>
+          <div class="additional-form-block">
+            <div  class="additional-input-block" >
+              <p class="additional-input-link link-primary text-decoration-underline">Подробности</p>
+            </div>
+            <div class="additional-content-block dropdown-content my-rounded">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>Блок</td>
+                    <td>{{form_search.article_news_block}}</td>
+                  </tr>
+                  <tr>
+                    <td>Название</td>
+                    <td>{{ form_search.article_news_title}}</td>
+                  </tr>
+                  <tr>
+                    <td>Контент</td>
+                    <td>{{form_search.article_news_body}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="form-error">{{ form_search.article_news_body.errors }}</div>
+            </div>
+          </div>
+          <div class='d-flex justify-content-between searchForm-inner-block'>
+            <input id='startCrawling' type="submit" class="btn shadow-sm my-rounded myButton send-action " value='start crawling >>'>
+            <a id='urlsList' type="send" class="btn shadow-sm my-rounded myButton" href="{% url 'urls_list' %}">Urls list</a>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6">
+        <form action="{% url 'download' %}" method="POST" id='downloadForm' class="simple-send">
+          {% csrf_token %}
+          <div class="text-center">
+            <div class="row ">
+
+              <div class="col-lg-6 form-outer-block">
+                <legend class="simpleText radioName text-center">{{ form_download.file_number.label }}</legend>
+
+                {% for f in form_download.file_number %}
+
+                  <div class="form-check">
+
+                   <!--  <input class="form-check-input" type="radio" name="pageNumber" id="pageNumber1"> -->
+                    {{f.tag}}
+                    <label class="form-check-label" for="{{f.id_for_label}}">
+                      <p class="simpleText">{{ f.choice_label }}</p>
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="col-lg-6">
+                <legend class="simpleText radioName text-center">{{ form_download.file_type.label }}</legend>
+
+                {% for f in form_download.file_type %}
+
+                  <div class="form-check">
+
+                   <!--  <input class="form-check-input" type="radio" name="pageNumber" id="pageNumber1"> -->
+                    {{f.tag}}
+                    <label class="form-check-label" for="{{f.id_for_label}}">
+                      <p class="simpleText">{{ f.choice_label }}</p>
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div id='downloadForm-submit-block'>
+              <input id ='myDownloadButton' type="send" class=" btn my-rounded myButton send-action" value='Download'>
+              <input type="submit" name="" style="display:none;">
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    const urls = {
+      search:"{% url 'search' %}",
+      download:"{% url 'download' %}",
+      register:"{% url 'register' %}",
+      login:"{% url 'login' %}"
+    }
+      $(window).ready(function () {
+        console.log("check params");
+        var urlParams = new URLSearchParams(window.location.search);
+        if(urlParams.has('search_link')){
+          var search_link = urlParams.get('search_link');
+
+          if(search_link){
+            var result_p = {},
+            entries = urlParams.entries();
+            for(const [key, value] of entries) { // each 'entry' is a [key, value] tupple
+              $('input#id_'+key).val(value);
+            }
+            $('#searchForm input.send-action').trigger('click');
+
+          };
+        };
+      });
+  </script>
+{% endblock %}

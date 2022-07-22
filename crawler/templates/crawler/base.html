@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, instal-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <style type="text/css">*,*:*{margin: 0;padding: 0;}</style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/basic.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <title>Web Crawler</title>
+</head>
+<body>
+  <header id="header" class="header">
+    <div class="header-inner">
+      <div class="w-100 header-top">
+        <div class="auth-block">
+          <div class="auth-inner-block text-light">
+            {% if request.user.is_authenticated %}
+              <p>{{ user.username }}</p>
+              {{ link_is_ready }}
+            {% else %}
+              <p>Войти</p>
+            {% endif %}
+          </div>
+          {% if request.user.is_authenticated %}
+            <div class='auth-profile-block dropdown-content my-rounded'>
+              <a href="{% url 'logout' %}" class='text-light' title="">Выйти</a>
+            </div>
+          {% else %}
+            {% if form_login %}
+              <div class="auth-login-block dropdown-content">
+                  <div class="auth-login-inner-block">
+                    <form class="auth-login-form" method="POST" action="{% url 'login'%}">
+                      {% csrf_token %}
+                      <div class="non-field-errors form-error">{{ form_login.non_field_errors }}</div>
+                      {% for f in form_login %}
+                        <label for="{{ f.id_for_label}}" class="form-label">{{ f.label }}</label>
+                        <p>{{f}}</p>
+                        <div class="form-error" for="{{f.id_for_label}}">{{ f.errors }}</div>
+                      {% endfor %}
+                      <div class="d-flex justify-content-around" >
+                        <input type="submit" value='Войти' class="inputText">
+                        <a type="" id='register-button' href="{% url 'register' %}#register"class="text-decoration-underline inputText">Регистрация</a>
+                      </div>
+
+                    </form>
+                  </div>
+              </div>
+              <script type="text/javascript">
+                dropdown='login';
+              </script>
+            {% endif %}
+            {% if form_register %}
+              <div class="auth-register-block dropdown-content">
+                  <div class="auth-register-inner-block">
+                    <form class="auth-register-form" method="POST" action="{% url 'register'%}">
+                      {% csrf_token %}
+                      <div class="non-field-errors form-error">{{ form_register.non_field_errors }}</div>
+                      {% for f in form_register %}
+                        <label for="{{ f.id_for_label}}" class="form-label">{{ f.label }}</label>
+                        <p>{{f}}</p>
+                        <div class="form-error" for="{{f.id_for_label}}">{{ f.errors }}</div>
+                      {% endfor %}
+                      <div class="d-flex justify-content-around" >
+                        <input type="submit" value='Зарегестрироваться' class="inputText">
+                      </div>
+                      <div class="d-flex justify-content-around">
+                        <a href="{% url 'login' %}#login" class="inputText">Войти</a>
+                      </div>
+
+                    </form>
+                  </div>
+              </div>
+              <script type="text/javascript">
+                dropdown='register';
+              </script>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div id="topDisplay">
+        <h2 class="fw-bold">WEB CRAWLER FOR KAZAKH AND CHINESE LANGUAGE</h2>
+      </div>
+    </div>
+  </header><!-- /header -->
+  <section class="main">
+    <div class="request-error-block" style="">
+      <div class="request-error-block-inner alert alert-danger text-center" role="alert">
+        Here is error located
+      </div>
+    </div>
+    <div class="request-success-block" style="">
+      <div class="request-success-block-inner alert alert-success text-center" role="alert">
+        Here is error located
+      </div>
+    </div>
+    {% block content %}
+    {%endblock %}
+  </section>
+</body>
+</html>

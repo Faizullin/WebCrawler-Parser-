@@ -1,0 +1,109 @@
+
+/*________________________________________________________________________________*/
+.searchForm-inner-block{
+	margin-top:8rem;
+}
+/*________________________________________________________________________________*/
+.additional-form-block{
+	position:relative;
+	width: 94%;
+	height: 50px;
+}
+.additional-input-block{
+	height: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+}
+.additional-input-link{
+	margin: 0;
+	cursor: pointer;
+}
+.additional-content-block{
+    display:none;
+    background: #f8f9fa;
+    z-index: 998;
+    padding: 1rem;
+    border: 2px solid #808080;
+
+}
+/*_________________________________________________________________________________*/
+#downloadForm{
+	display: flex;
+	justify-content: center;
+}
+#downloadForm>div{
+	width: 90%;
+}
+
+.auth-link{
+	display: block;
+	background: black;
+	width: 100%;
+	hright: 100%;
+	color: white;
+}
+.nav{
+display: flex;
+}
+
+
+
+#url-block{
+  width:94%;
+  padding: 5px 18px;
+  border:2px solid #6c757d;
+  /*margin-bottom: 170px;*/
+}
+#url-block input{
+   border:none;
+   outline: none;
+   width: 100%;
+}
+.form-check{
+  margin-bottom: 20px;
+}
+
+.radioName{
+  margin-bottom:20px;
+
+}
+.form-check input[type=radio] {
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    background: white;
+    outline: none;
+}
+.form-check input[type=radio]:checked {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    background: black;
+    transform:translateX(-5px);
+    transform:translateX(-5px);
+    border: none;outline: none;
+}
+
+#downloadForm-submit-block{
+	margin-top: 1.4rem;
+	display: flex;
+	justify-content: flex-end;
+}
+.myButton{
+  padding:10px 0;
+  width:180px;
+  height: 50px;
+  font-weight: 500;
+  font-size:1.2rem;
+  background: #808080 !important;
+  color: #fff;
+}
+.myButton:focus,.myButton:hover{
+	color: #fff;
+}
+
+.form-outer-block{
+	margin-bottom: 50px;
+}
